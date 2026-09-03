@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Modern Muhammad Nafiz</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #f8fafc;
+        color: #1e293b;
+        line-height: 1.6;
+      }
+      /* Header / Navbar */
+      header {
+        background-color: #ffffff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 20px 10%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .logo {
+        font-size: 20px;
+        font-weight: 700;
+        color: #2563eb;
+      }
+      nav a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: #64748b;
+        font-weight: 600;
+        transition: color 0.2s;
+      }
+      nav a:hover {
+        color: #2563eb;
+      }
+
+      /* Hero Section */
+      .hero {
+        text-align: center;
+        padding: 100px 20px;
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+        color: white;
+      }
+      .hero h1 {
+        font-size: 38px;
+        margin-bottom: 15px;
+        color: #ffffff;
+      }
+      .hero p {
+        color: #94a3b8;
+        max-width: 600px;
+        margin: 0 auto 25px;
+        font-size: 16px;
+      }
+      .btn {
+        background-color: #2563eb;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .btn:hover {
+        background-color: #1d4ed8;
+      }
+
+      /* Section Common Style */
+      .section-title {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .section-title h2 {
+        font-size: 28px;
+        color: #0f172a;
+      }
+      .section-title p {
+        color: #64748b;
+        font-size: 14px;
+      }
+
+      /* About Section */
+      .about-section {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 0 20px;
+        text-align: center;
+      }
+      .about-section p {
+        color: #475569;
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      /* Main Content Grid */
+      .container {
+        max-width: 1000px;
+        margin: 60px auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+      }
+      .card {
+        background: white;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+      .card h3 {
+        margin-bottom: 10px;
+        color: #0f172a;
+      }
+      .card p {
+        color: #64748b;
+        font-size: 14px;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        background-color: #ffffff;
+        padding: 60px 20px;
+        border-top: 1px solid #e2e8f0;
+      }
+      .contact-form {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 14px;
+        outline: none;
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        border-color: #2563eb;
+      }
+
+      /* Modal Pop-up untuk Data Diri & CV */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        overflow: auto;
+      }
+      .modal-content {
+        background-color: #ffffff;
+        margin: 5% auto;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        position: relative;
+        text-align: left;
+      }
+      .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #64748b;
+        cursor: pointer;
+      }
+      .close-btn:hover {
+        color: #0f172a;
+      }
+      .cv-section {
+        margin-bottom: 20px;
+      }
+      .cv-section h3 {
+        color: #2563eb;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+      }
+      .cv-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 15px;
+      }
+      .cv-table td {
+        padding: 6px 0;
+        vertical-align: top;
+      }
+      .cv-table td.label {
+        width: 35%;
+        font-weight: 600;
+        color: #475569;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 25px;
+        background-color: #0f172a;
+        color: #94a3b8;
+        font-size: 14px;
+      }
+
+      /* Responsive Media Query */
+      @media (max-width: 600px) {
+        header {
+          flex-direction: column;
+          gap: 10px;
+        }
+        nav a {
+          margin: 0 10px;
+        }
+        .hero h1 {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">Nafiz</div>
+      <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#tentang">Tentang Saya</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#portofolio">Portofolio</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="beranda">
+      <h1>Welcome to Muhammad Nafiz's Website</h1>
+      <p>
+        Siswa Teknik Komputer dan Jaringan di SMKN 22 Jakarta yang memiliki
+        ketertarikan tinggi pada pengembangan website dan teknologi jaringan.
+      </p>
+      <button class="btn" onclick="openModal()">Lihat CV / Data Diri</button>
+    </section>
+
+    <section class="about-section" id="tentang">
+      <div class="section-title">
+        <h2>Tentang Saya</h2>
+        <p>Sekilas latar belakang dan minat saya</p>
+      </div>
+      <p>
+        Saya Muhammad Nafiz, seorang pelajar yang berfokus pada dunia IT,
+        khususnya Web Development dan Networking. Saya menyukai tantangan baru,
+        senang mempelajari teknologi terkini, dan terus mengasah keterampilan
+        lewat proyek praktis.
+      </p>
+    </section>
+
+    <div class="section-title" id="layanan">
+      <h2>Minat & Layanan</h2>
+      <p>Bidang yang sedang saya tekuni</p>
+    </div>
+    <main class="container">
+      <div class="card">
+        <h3>Web Development</h3>
+        <p>
+          Membangun antarmuka website yang bersih, modern, dan responsif
+          menggunakan HTML, CSS, dan dasar JavaScript.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Jaringan Komputer</h3>
+        <p>
+          Mempelajari konfigurasi dasar jaringan, mikrotik, serta pengolahan
+          server sebagai bagian dari jurusan TKJ.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Olahraga & Teamwork</h3>
+        <p>
+          Aktif dalam olahraga seperti sepak bola, hockey, dan badminton yang
+          melatih kedisiplinan serta kerja sama tim.
+        </p>
+      </div>
+    </main>
+
+    <div class="section-title" id="portofolio">
+      <h2>Proyek Portofolio</h2>
+      <p>Karya yang telah saya kerjakan</p>
+    </div>
+    <main class="container">
+      <div class="card">
+        <h3>Website Personal HTML/CSS</h3>
+        <p>
+          Project website portofolio modern berbasis halaman statis yang dapat
+          diakses secara cepat melalui platform GitHub Pages.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Konfigurasi Jaringan Lab</h3>
+        <p>
+          Simulasi dan perancangan topologi jaringan skala lokal (LAN)
+          menggunakan Packet Tracer di SMKN 22 Jakarta.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Eksplorasi UI/UX Web</h3>
+        <p>
+          Merancang konsep tampilan web yang ramah pengguna dengan perpaduan
+          warna modern dan font Inter.
+        </p>
+      </div>
+    </main>
+
+    <!-- Section 4: Form Kontak -->
+    <section class="contact-section" id="kontak">
+      <div class="section-title">
+        <h2>Hubungi Saya</h2>
+        <p>Kirimkan pesan atau pertanyaan Anda di bawah ini</p>
+      </div>
+      <form
+        class="contact-form"
+        action="https://formsubmit.co/nafizmuh26@gmail.com"
+        method="POST"
+      >
+        <input type="text" name="name" placeholder="Nama Lengkap" required />
+        <input type="email" name="email" placeholder="Alamat Email" required />
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Pesan Anda..."
+          required
+        ></textarea>
+        <button type="submit" class="btn">Kirim Pesan</button>
+      </form>
+    </section>
+
+    <div id="cvModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+
+        <h2>Curriculum Vitae (CV)</h2>
+        <br />
+
+        <div class="cv-section">
+          <h3>Data Diri</h3>
+          <table class="cv-table">
+            <tr>
+              <td class="label">Nama Lengkap</td>
+              <td>: Muhammad Nafiz</td>
+            </tr>
+            <tr>
+              <td class="label">Tempat, Tgl Lahir</td>
+              <td>: gatau tanya ibu saya aja</td>
+            </tr>
+            <tr>
+              <td class="label">Alamat</td>
+              <td>: KEPO BGT, DATENG AJA KE SMKN22 JAKARTA</td>
+            </tr>
+            <tr>
+              <td class="label">Email</td>
+              <td>: ABG Aci Bala-bala Gehu</td>
+            </tr>
+            <tr>
+              <td class="label">Telepon/WA</td>
+              <td>: 085771100170</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="cv-section">
+          <h3>Pendidikan</h3>
+          <p><strong>SMKN 22 JAKARTA</strong> — 2024 - Sekarang</p>
+          <p style="font-size: 13px; color: #64748b">
+            Teknik Komputer dan Jaringan
+          </p>
+        </div>
+
+        <div class="cv-section">
+          <h3>Keahlian</h3>
+          <ul>
+            <li>Web Development (HTML & CSS)</li>
+            <li>Komunikasi & Kerja Sama Tim</li>
+            <li>Olahraga: Sepak bola, Hockey, Badminton</li>
+          </ul>
+        </div>
+
+        <div class="cv-section">
+          <h3>Pengalaman / Proyek</h3>
+          <p><strong>Pengembangan Website Portofolio Personal</strong></p>
+          <p style="font-size: 13px; color: #64748b">
+            Merancang, membangun, dan mempublikasikan website responsif
+            menggunakan HTML, CSS, dan JavaScript yang di-hosting pada GitHub
+            Pages.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Muhammad Nafiz. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function openModal() {
+        document.getElementById("cvModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("cvModal").style.display = "none";
+      }
+
+      // Menutup modal saat mengklik di luar area modal
+      window.onclick = function (event) {
+        var modal = document.getElementById("cvModal");
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      // Menutup modal dengan tombol Escape (Esc)
+      window.onkeydown = function (event) {
+        if (event.key === "Escape") {
+          closeModal();
+        }
+      };
+    </script>
+  </body>
+</html>
